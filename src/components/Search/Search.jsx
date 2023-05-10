@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import styles from "./Search.module.css"
+import styles from "./Search.module.css";
 import { useDispatch } from "react-redux";
-import { setGithubData } from "../store/reducers/projectSlice";
+import { setGithubData, setLoading } from "../../store/reducers/projectSlice";
 
 const Search = () => {
   const [inputValue, setInputValue] = useState("");
@@ -12,12 +12,14 @@ const Search = () => {
   };
 
   const submitHandler = async () => {
+    dispatch(setLoading(true));
     const req = await fetch(
       `https://api.github.com/search/repositories?q=${inputValue}`
     );
     if (req.ok) {
       const res = await req.json();
       dispatch(setGithubData(res));
+      dispatch(setLoading(false));
     }
   };
 
@@ -31,8 +33,10 @@ const Search = () => {
           onChange={inputChangeHandler}
           placeholder="Начните вводить текст для поиска (не менее трех символов)"
         />
-        <button onClick={submitHandler} className={`btn btn-primary ${styles.button}`}>
-        </button>
+        <button
+          onClick={submitHandler}
+          className={`btn btn-primary ${styles.button}`}
+        ></button>
       </div>
     </header>
   );

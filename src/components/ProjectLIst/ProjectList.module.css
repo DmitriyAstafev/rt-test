@@ -1,0 +1,36 @@
+.mainProject {
+  position: relative;
+}
+
+.inner {
+  padding: 34px 27px;
+}
+
+.item {
+  width: 30%;
+  border: 1px solid #a2a3a4;
+  padding: 13px 15px;
+  margin-bottom: 23px;
+  box-shadow: 0 4px 10px #303030;
+}
+
+.another {
+  font-family: Roboto;
+  font-size: 28px;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .item {
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding: 34px 9px;
+  }
+  .item {
+    width: 100%;
+  }
+}

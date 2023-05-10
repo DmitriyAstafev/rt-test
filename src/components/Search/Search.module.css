@@ -9,6 +9,7 @@
   border-radius: 0;
   width: 91%;
   font-size: 14px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .input::placeholder {
@@ -19,7 +20,7 @@
   border-radius: 0;
   width: 74px;
   height: 68px;
-  background-image: url("../img/search-icon.png");
+  background-image: url("../../img/search-icon.png");
   background-position: center;
   background-repeat: no-repeat;
   background-color: #00a3ff;
