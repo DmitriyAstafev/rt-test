@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  searchQuery: "",
   countPerPage: 10,
   currentPage: 1,
   isLoading: false,
@@ -12,9 +13,14 @@ export const projectSlice = createSlice({
   initialState,
   reducers: {
     setStateFromLS: (state) => {
-      state.currentPage = localStorage.getItem("currentPage");
-      state.isLoading = localStorage.getItem("isLoading") === "true" ? true : false;
+      state.searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
+      state.currentPage = JSON.parse(localStorage.getItem("currentPage"));
+      state.isLoading = JSON.parse(localStorage.getItem("isLoading"));
       state.githubData = JSON.parse(localStorage.getItem("githubData"));
+    },
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+      localStorage.setItem("searchQuery", JSON.stringify(action.payload));
     },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
@@ -31,7 +37,7 @@ export const projectSlice = createSlice({
   },
 });
 
-export const { setGithubData, setLoading, setCurrentPage, setStateFromLS } =
+export const { setGithubData, setLoading, setCurrentPage, setStateFromLS, setSearchQuery } =
   projectSlice.actions;
 
 export const selectProject = (state) => state.project;
