@@ -1,0 +1,26 @@
+.selector {
+  width: 47px;
+  overflow: hidden;
+  background: url("../img/select-arrow.png") no-repeat right #ffffff;
+  border: 1px solid #a2a3a4;
+  /* background-position-x: 20px; */
+  background-size: 16px;
+  position: absolute;
+  left: 36px;
+  bottom: 20px;
+}
+
+.selector select {
+  background: transparent;
+  width: 61px;
+  padding: 2px;
+  font-size: 16px;
+  height: 34px;
+}
+
+@media (max-width: 768px) {
+  .selector {
+    left: 21px;
+    bottom: 55px;
+  }
+}

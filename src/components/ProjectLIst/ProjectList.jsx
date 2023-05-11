@@ -4,6 +4,7 @@ import ProjectItem from "../ProjectItem/ProjectItem";
 import { selectProject } from "../../store/reducers/projectSlice";
 import styles from "./ProjectList.module.css";
 import Paginator from "../Paginator/Paginator";
+import CountSelector from "../../CountSelector/CountSelector";
 
 const ProjectList = () => {
   const { githubData, isLoading, currentPage, countPerPage } =
@@ -16,7 +17,11 @@ const ProjectList = () => {
 
   return (
     <div className={`container ${styles.mainProject}`}>
-
+      {githubData?.total_count === 0 && !isLoading && (
+        <div className={`${styles.another}`}>
+          <h3>По данному запросу ничего не найдено.</h3>
+        </div>
+      )}
       {isLoading ? (
         <div className={`${styles.another}`}>
           <h3>Поиск проектов...</h3>
@@ -42,12 +47,13 @@ const ProjectList = () => {
         </div>
       )}
 
-      {/* <SelectSize
-    onChangeSetSize={onChangeSetSize}
-    sizePage={sizePage}
-    />
- */}
-      {(projectsOnPage?.length && !isLoading) && <Paginator />}
+      {projectsOnPage?.length && !isLoading ? (
+        <>
+          <CountSelector />
+          <Paginator />
+        </>
+      ) : null}
+      {/* {(projectsOnPage?.length && !isLoading) && <Paginator />} */}
     </div>
   );
 };

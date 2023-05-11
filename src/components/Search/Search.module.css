@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #DDDDDD;
+  background-color: #dddddd;
   padding-top: 32px;
   padding-bottom: 47px;
 }
@@ -9,7 +9,7 @@
   border-radius: 0;
   width: 91%;
   font-size: 14px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .input::placeholder {

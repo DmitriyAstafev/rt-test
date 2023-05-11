@@ -14,9 +14,14 @@ export const projectSlice = createSlice({
   reducers: {
     setStateFromLS: (state) => {
       state.searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
+      state.countPerPage = JSON.parse(localStorage.getItem("countPerPage"));
       state.currentPage = JSON.parse(localStorage.getItem("currentPage"));
       state.isLoading = JSON.parse(localStorage.getItem("isLoading"));
       state.githubData = JSON.parse(localStorage.getItem("githubData"));
+    },
+    setCountPerPage: (state, action) => {
+      state.countPerPage = action.payload;
+      localStorage.setItem("countPerPage", JSON.stringify(action.payload));
     },
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
@@ -37,8 +42,14 @@ export const projectSlice = createSlice({
   },
 });
 
-export const { setGithubData, setLoading, setCurrentPage, setStateFromLS, setSearchQuery } =
-  projectSlice.actions;
+export const {
+  setGithubData,
+  setLoading,
+  setCurrentPage,
+  setStateFromLS,
+  setSearchQuery,
+  setCountPerPage,
+} = projectSlice.actions;
 
 export const selectProject = (state) => state.project;
 

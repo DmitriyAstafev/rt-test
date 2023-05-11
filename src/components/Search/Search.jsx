@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Search.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectProject, setGithubData, setLoading, setSearchQuery } from "../../store/reducers/projectSlice";
+import {
+  selectProject,
+  setCurrentPage,
+  setGithubData,
+  setLoading,
+  setSearchQuery,
+} from "../../store/reducers/projectSlice";
 
 const Search = () => {
   const { searchQuery } = useSelector(selectProject);
@@ -12,6 +18,10 @@ const Search = () => {
   };
 
   const submitHandler = async () => {
+    if (searchQuery.length < 3) {
+      alert("Для поиска необходимо ввести не менее трех символов");
+      return;
+    }
     dispatch(setLoading(true));
     const req = await fetch(
       `https://api.github.com/search/repositories?q=${searchQuery}`
@@ -20,7 +30,7 @@ const Search = () => {
       const res = await req.json();
       dispatch(setGithubData(res));
       dispatch(setLoading(false));
-
+      dispatch(setCurrentPage(1));
     }
   };
 
