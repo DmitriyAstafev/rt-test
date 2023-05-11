@@ -23,7 +23,7 @@ const Paginator = () => {
 
   return (
     <nav aria-label="">
-      <ul class={`pagination pagination-lg justify-content-center ${styles.listPosition}`}>
+      <ul className={`pagination pagination-lg justify-content-center ${styles.listPosition}`}>
         <li className={currentPage <= 1 ? "page-item disabled" : "page-item"}>
           <button
             className={`page-link ${styles.leftArrow}`}

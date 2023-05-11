@@ -11,6 +11,11 @@ export const projectSlice = createSlice({
   name: "project",
   initialState,
   reducers: {
+    setStateFromLS: (state) => {
+      state.currentPage = localStorage.getItem("currentPage");
+      state.isLoading = localStorage.getItem("isLoading") === "true" ? true : false;
+      state.githubData = JSON.parse(localStorage.getItem("githubData"));
+    },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
       localStorage.setItem("currentPage", JSON.stringify(action.payload));
@@ -26,7 +31,8 @@ export const projectSlice = createSlice({
   },
 });
 
-export const { setGithubData, setLoading, setCurrentPage } = projectSlice.actions;
+export const { setGithubData, setLoading, setCurrentPage, setStateFromLS } =
+  projectSlice.actions;
 
 export const selectProject = (state) => state.project;
 
