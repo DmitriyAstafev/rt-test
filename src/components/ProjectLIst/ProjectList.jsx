@@ -3,14 +3,19 @@ import { useSelector } from "react-redux";
 import ProjectItem from "../ProjectItem/ProjectItem";
 import { selectProject } from "../../store/reducers/projectSlice";
 import styles from "./ProjectList.module.css";
+import Paginator from "../Paginator/Paginator";
 
 const ProjectList = () => {
-  const { githubData, isLoading } = useSelector(selectProject);
-  //   console.log("gggggggggggg", projectArrow);
+  const { githubData, isLoading, currentPage, countPerPage } =
+    useSelector(selectProject);
+
+  const projectsOnPage = githubData?.items?.slice(
+    (currentPage - 1) * countPerPage,
+    (currentPage - 1) * countPerPage + countPerPage
+  );
 
   return (
     <div className={`container ${styles.mainProject}`}>
-      {/* <h2 className="hidden">Найденные проекты</h2> */}
 
       {isLoading ? (
         <div className={`${styles.another}`}>
@@ -20,7 +25,7 @@ const ProjectList = () => {
         <div
           className={`justify-content-between flex-wrap flex-row list-group ${styles.inner}`}
         >
-          {githubData?.items?.map((project) => {
+          {projectsOnPage?.map((project) => {
             return (
               <ProjectItem
                 key={project.id}
@@ -41,13 +46,8 @@ const ProjectList = () => {
     onChangeSetSize={onChangeSetSize}
     sizePage={sizePage}
     />
-
-    <Paginator
-    sizePage={sizePage}
-    currentNumber={currentNumber}
-    onClickPage={onClickPage}
-    data={props.projects}
-    /> */}
+ */}
+      {(projectsOnPage?.length && !isLoading) && <Paginator />}
     </div>
   );
 };

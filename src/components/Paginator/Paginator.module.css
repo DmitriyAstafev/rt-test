@@ -1,0 +1,19 @@
+.leftArrow,
+.rightArrow {
+  background-image: url("../../img/back_arrow_icon_131563.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+
+.leftArrow {
+  background-image: url("../../img/back_arrow_icon_131563.png");
+}
+
+.rightArrow {
+  background-image: url("../../img/next_arrow_icon_131519.png");
+}
+
+.listPosition {
+  margin-bottom: 20px;
+}
