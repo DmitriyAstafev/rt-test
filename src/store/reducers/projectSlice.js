@@ -14,7 +14,7 @@ export const projectSlice = createSlice({
   reducers: {
     setStateFromLS: (state) => {
       state.searchQuery = JSON.parse(localStorage.getItem("searchQuery"));
-      state.countPerPage = JSON.parse(localStorage.getItem("countPerPage"));
+      state.countPerPage = JSON.parse(localStorage.getItem("countPerPage")) || 10;
       state.currentPage = JSON.parse(localStorage.getItem("currentPage"));
       state.isLoading = JSON.parse(localStorage.getItem("isLoading"));
       state.githubData = JSON.parse(localStorage.getItem("githubData"));
